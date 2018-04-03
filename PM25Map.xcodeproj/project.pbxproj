@@ -20,6 +20,8 @@
 		3A34B6A22070A3D300CC7056 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A34B6A12070A3D300CC7056 /* Assets.xcassets */; };
 		3A34B6A52070A3D300CC7056 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A34B6A32070A3D300CC7056 /* LaunchScreen.storyboard */; };
 		3A34B6A82070A3D300CC7056 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A34B6A72070A3D300CC7056 /* main.m */; };
+		3A69D81F207393DA0065632A /* PM25Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A69D81E207393DA0065632A /* PM25Api.m */; };
+		3A69D8222073B1060065632A /* PM25ImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A69D8212073B1060065632A /* PM25ImageHelper.m */; };
 		3AE3BC962070C6E700B19778 /* Pos.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE3BC8B2070C6E600B19778 /* Pos.m */; };
 		3AE3BC972070C6E700B19778 /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE3BC8C2070C6E600B19778 /* Data.m */; };
 		3AE3BC982070C6E700B19778 /* Monitors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE3BC8D2070C6E600B19778 /* Monitors.m */; };
@@ -54,6 +56,10 @@
 		3A34B6A42070A3D300CC7056 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A34B6A62070A3D300CC7056 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A34B6A72070A3D300CC7056 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3A69D81D207393DA0065632A /* PM25Api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PM25Api.h; sourceTree = "<group>"; };
+		3A69D81E207393DA0065632A /* PM25Api.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PM25Api.m; sourceTree = "<group>"; };
+		3A69D8202073B1060065632A /* PM25ImageHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PM25ImageHelper.h; sourceTree = "<group>"; };
+		3A69D8212073B1060065632A /* PM25ImageHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PM25ImageHelper.m; sourceTree = "<group>"; };
 		3AE3BC8B2070C6E600B19778 /* Pos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pos.m; sourceTree = "<group>"; };
 		3AE3BC8C2070C6E600B19778 /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
 		3AE3BC8D2070C6E600B19778 /* Monitors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Monitors.m; sourceTree = "<group>"; };
@@ -137,6 +143,10 @@
 				3A34B6A62070A3D300CC7056 /* Info.plist */,
 				3A34B6A72070A3D300CC7056 /* main.m */,
 				3A34B69E2070A3D300CC7056 /* PM25Map.xcdatamodeld */,
+				3A69D81D207393DA0065632A /* PM25Api.h */,
+				3A69D81E207393DA0065632A /* PM25Api.m */,
+				3A69D8202073B1060065632A /* PM25ImageHelper.h */,
+				3A69D8212073B1060065632A /* PM25ImageHelper.m */,
 			);
 			path = PM25Map;
 			sourceTree = "<group>";
@@ -339,6 +349,8 @@
 				3AE3BC962070C6E700B19778 /* Pos.m in Sources */,
 				3A34B6A82070A3D300CC7056 /* main.m in Sources */,
 				3A34B6972070A3D300CC7056 /* AppDelegate.m in Sources */,
+				3A69D81F207393DA0065632A /* PM25Api.m in Sources */,
+				3A69D8222073B1060065632A /* PM25ImageHelper.m in Sources */,
 				3AE3BC972070C6E700B19778 /* Data.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

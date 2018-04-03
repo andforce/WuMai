@@ -26,7 +26,5 @@
         BOOL isEqual = [monitor isEqualToString:target];
         return isEqual;
     }
-
-
 }
 @end

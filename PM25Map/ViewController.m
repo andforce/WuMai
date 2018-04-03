@@ -9,15 +9,20 @@
 #import "ViewController.h"
 
 #import <MAMapKit/MAMapKit.h>
-#import <AFNetworking/AFHTTPSessionManager.h>
 #import "DataModels.h"
 #import "PM25MAPointAnnotation.h"
 #import "PM25MAAnnotationView.h"
+#import "PM25Api.h"
 
 
 @interface ViewController ()<MAMapViewDelegate>{
     MAMapView *_mapView;
-    AFHTTPSessionManager *_browser;
+
+    PM25Api *_pm25Api;
+
+    NSMutableArray<Monitors *> *_datas;
+
+    int _lastZoomLevel;
 }
 
 @end
@@ -27,12 +32,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _browser = [AFHTTPSessionManager manager];
-    _browser.responseSerializer = [AFHTTPResponseSerializer serializer];
-    _browser.responseSerializer.acceptableContentTypes = [_browser.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    [_browser.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36" forHTTPHeaderField:@"User-Agent"];
-    
-    
+    _pm25Api = [[PM25Api alloc] init];
+
+    _datas = [NSMutableArray array];
+
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
 
     _mapView.customizeUserLocationAccuracyCircleRepresentation = YES;
@@ -52,108 +55,75 @@
     // Dispose of any resources that can be recreated.
 }
 
-    
-#pragma 移动
--(void)mapViewDidFinishLoadingMap:(MAMapView *)mapView{
-    NSLog(@"LIFE_CYCLE:mapViewDidFinishLoadingMap");
+- (void) fetchMonitors:(MAMapView *) mapView{
+    CGRect frame = mapView.frame;
+    CGPoint leftBottom = CGPointMake(frame.origin.x, frame.origin.y + frame.size.height);
+    CGPoint rightTop = CGPointMake(frame.origin.x + frame.size.width, frame.origin.y);
+
+    CLLocationCoordinate2D left = [mapView convertPoint:leftBottom toCoordinateFromView:mapView];
+    CLLocationCoordinate2D right = [mapView convertPoint:rightTop toCoordinateFromView:mapView];
+
+    [_pm25Api fetchMonitors:_mapView.zoomLevel leftLat:left.latitude leftLon:left.longitude rightLat:right.latitude rightLon:right.longitude handler:^(NSArray<Monitors *> *monitors) {
+        NSMutableArray<Monitors*> *toAdd = [NSMutableArray array];
+        for(Monitors * m in monitors){
+            if ([_datas containsObject:m]){
+
+            } else{
+                [toAdd addObject:m];
+            }
+        }
+
+        NSArray<PM25MAPointAnnotation*> * toAddAnns = [self monitorsToAnnotations:toAdd zoom:(int)mapView.zoomLevel];
+
+        [mapView addAnnotations:toAddAnns];
+
+        NSLog(@"LIFE_CYCLE:fetchMonitors:%d, toAdd:%d, DATA:%d",monitors.count, toAdd.count, _datas.count);
+
+        [_datas addObjectsFromArray:toAdd];
+    }];
 }
 
     
-- (void)mapViewRegionChanged:(MAMapView *)mapView{
-    //NSLog(@"LIFE_CYCLE:mapViewRegionChanged");
+#pragma 移动
+
+-(void)mapView:(MAMapView *)mapView mapDidMoveByUser:(BOOL)wasUserAction{
+    NSLog(@"LIFE_CYCLE:mapDidMoveByUser-wasUserAction:%@", wasUserAction ? @"YES":@"NO");
+    if (wasUserAction || _datas.count == 0){
+        [self fetchMonitors:mapView];
+    }
+}
+
+- (void)mapView:(MAMapView *)mapView mapWillZoomByUser:(BOOL)wasUserAction {
+    _lastZoomLevel = (int)mapView.zoomLevel;
+
+    NSLog(@"LIFE_CYCLE:mapWillZoomByUser-wasUserAction:%@, ZoomLevel:%d", wasUserAction ? @"YES":@"NO", _lastZoomLevel);
 }
 
 - (void)mapView:(MAMapView *)mapView mapDidZoomByUser:(BOOL)wasUserAction {
 
-    NSLog(@"ZOOM-------------------------");
+    int nowZoomLevel = (int)mapView.zoomLevel;
 
-    NSArray * currentAnnotations = mapView.annotations;
-    [mapView removeAnnotations:currentAnnotations];
-}
-    
--(void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    NSLog(@"LIFE_CYCLE:mapDidZoomByUser-wasUserAction:%@, ZoomLevel:%d", wasUserAction ? @"YES":@"NO", nowZoomLevel);
 
+    if (_lastZoomLevel != nowZoomLevel){
 
-    NSLog(@"REG Change-------------------------");
+        NSArray * annotations = mapView.annotations;
 
-    //NSLog(@"LIFE_CYCLE:regionDidChangeAnimated");
-
-//    MAMapRect rect = mapView.visibleMapRect;
-
-    NSArray * currentAnnotations = mapView.annotations;
-//    [mapView removeAnnotations:currentAnnotations];
-
-    NSMutableArray *toAdd = [NSMutableArray array];
-
-    NSLog(@"zoom level %f", mapView.zoomLevel);
-
-    CGRect frame = mapView.frame;
-    CGPoint leftBottom = CGPointMake(frame.origin.x, frame.origin.y + frame.size.height);
-    CGPoint rightTop = CGPointMake(frame.origin.x + frame.size.width, frame.origin.y);
-    
-    CLLocationCoordinate2D left = [mapView convertPoint:leftBottom toCoordinateFromView:mapView];
-    CLLocationCoordinate2D right = [mapView convertPoint:rightTop toCoordinateFromView:mapView];
-
-    int zoomLevel = (int)mapView.zoomLevel;
-
-
-    NSDate *date = [NSDate date];
-    long timeStamp = (NSInteger) [date timeIntervalSince1970];
-    
-    NSString * url = [NSString stringWithFormat:@"https://sp0.baidu.com/5LMDcjW6BwF3otqbppnN2DJv/weather.pae.baidu.com/weather/data/Monitorlist?z=%d&lb=%f,%f&rt=%f,%f&_=%ld", zoomLevel,left.longitude, left.latitude, right.longitude, right.latitude, timeStamp];
-    
-    [_browser GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSString *string = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSString *a= string;
-        
-        NSData *data =[string dataUsingEncoding:NSUTF8StringEncoding];
-
-        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingOptions) kNilOptions error:nil];
-
-        PM25Module * module = [[PM25Module alloc] initWithDictionary:dictionary];
-        
-        NSArray<Monitors*> *monitors = [[module data] monitors];
-        
-        NSLog(@"获取到的检测点数量： %ld", (long) monitors.count);
-
-        NSMutableArray * newAnnotations = [self monitorsToAnnotations:monitors zoom:zoomLevel];
-
-//        NSArray * cas = mapView.annotations;
-//        [mapView removeAnnotations:cas];
-
-        NSMutableArray *oldToAdd = [NSMutableArray array];
-
-//        NSMutableArray *removeAnnotations = [NSMutableArray array];
-
-        for (id <MAAnnotation> currentAnnotation in currentAnnotations) {
-            if (![newAnnotations containsObject: currentAnnotation]){
-                //[mapView removeAnnotation:currentAnnotation];
-//                [removeAnnotations addObject:currentAnnotation];
-                [oldToAdd addObject:currentAnnotation];
-                NSLog(@"新数据中存在，删除=======================");
-            } else {
-//                if ([currentAnnotation isKindOfClass:[PM25MAPointAnnotation class]]){
-//                    PM25MAPointAnnotation *annotation = (PM25MAPointAnnotation *)currentAnnotation;
-//                    if ((zoomLevel >= 8 && annotation.zoomLevel < 8) || (zoomLevel < 8 && annotation.zoomLevel >= 8)){
-//                        [refreshAnnotations addObject:[self monitorToAnnotation:annotation.monitors zoom:zoomLevel]];
-//                        //[mapView removeAnnotation:currentAnnotation];
-//                        [removeAnnotations addObject:currentAnnotation];
-//                        NSLog(@"由于ZoomLevel变化，因此需要更新OLD:%d NEW:%d", zoomLevel, annotation.zoomLevel);
-//                    }
-//                } else{
-//
-//                    NSLog(@"这是一条全新的Annition《《《《《《《《《《《《《《《《《《");
-//                }
+        for (id <MAAnnotation> annotation in annotations) {
+            if ([annotation isKindOfClass:[PM25MAPointAnnotation class]]){
+                PM25MAAnnotationView * annotationView = (PM25MAAnnotationView *)[mapView viewForAnnotation:annotation];
+                [annotationView refreshImage:(int)mapView.zoomLevel];
             }
         }
 
-//        [mapView removeAnnotations:removeAnnotations];
-        [mapView addAnnotations:newAnnotations];
-        [mapView addAnnotations:oldToAdd];
+        if (wasUserAction || _datas.count == 0){
+            [self fetchMonitors:mapView];
+        }
+    }
+}
 
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-    
-    }];
+- (void)mapView:(MAMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+    NSLog(@"LIFE_CYCLE:didAddAnnotationViews");
 }
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation {
@@ -173,7 +143,7 @@
         Pm25 * pm25 = monitor.pm25;
         
         int zoomLevel = (int)mapView.zoomLevel;
-        NSLog(@"zoom Level %d", zoomLevel);
+
         [annotationView showAqi:pm25.val zoom:zoomLevel];
         return annotationView;
     }

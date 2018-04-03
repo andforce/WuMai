@@ -7,9 +7,13 @@
 //
 
 #import "PM25MAAnnotationView.h"
+#import "PM25ImageHelper.h"
 
 @implementation PM25MAAnnotationView{
     UILabel * _label;
+    int _aqiLevel;
+    NSString * _aqiLevelStr;
+    int _zoomLevel;
 }
 
 /*
@@ -22,6 +26,7 @@
 
 - (id)initWithAnnotation:(id <MAAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]){
+
         _label = [[UILabel alloc] initWithFrame:self.frame];
         _label.text = @"500";
         //_label.backgroundColor = UIColor.blackColor;
@@ -43,73 +48,33 @@
     _label.frame = CGRectMake(0, 0 - 2, self.bounds.size.width, self.bounds.size.height);
 }
 
-- (void)showAqiBig:(NSString *)level {
-
-    int levelInt = [level intValue];
-
-    self.image = [self rectImage:levelInt];
-
-    _label.text = level;
-}
-
-- (void)showAqiSmall:(NSString *)level {
-
-
-    int levelInt = [level intValue];
-
-    self.image = [self pointImage:levelInt];
-
-    _label.text = @"";
-}
-
-
-- (UIImage *) pointImage:(int)aqiLevel {
-    UIImage *result = nil;
-
-    if (aqiLevel >= 0 && aqiLevel <= 50){
-        result = [UIImage imageNamed:@"aqi_map_point_level_1_8x8_@2x.png"];
-    } else if (aqiLevel >= 51 && aqiLevel <= 100){
-        result = [UIImage imageNamed:@"aqi_map_point_level_2_8x8_@2x.png"];
-    }else if (aqiLevel >= 101 && aqiLevel <= 150){
-        result = [UIImage imageNamed:@"aqi_map_point_level_3_8x8_@2x.png"];
-    }else if (aqiLevel >= 151 && aqiLevel <= 200){
-        result = [UIImage imageNamed:@"aqi_map_point_level_4_8x8_@2x.png"];
-    }else if (aqiLevel >= 201 && aqiLevel <= 300){
-        result = [UIImage imageNamed:@"aqi_map_point_level_5_8x8_@2x.png"];
-    }else if (aqiLevel > 300){
-        result = [UIImage imageNamed:@"aqi_map_point_level_6_8x8_@2x.png"];
-    }
-    return result;
-}
-
-- (UIImage *) rectImage:(int)aqiLevel {
-    UIImage *result = nil;
-
-    if (aqiLevel >= 0 && aqiLevel <= 50){
-        result = [UIImage imageNamed:@"aqi_map_level_1_30x27_@2x.png"];
-    } else if (aqiLevel >= 51 && aqiLevel <= 100){
-        result = [UIImage imageNamed:@"aqi_map_level_2_30x27_@2x.png"];
-    }else if (aqiLevel >= 101 && aqiLevel <= 150){
-        result = [UIImage imageNamed:@"aqi_map_level_3_30x27_@2x.png"];
-    }else if (aqiLevel >= 151 && aqiLevel <= 200){
-        result = [UIImage imageNamed:@"aqi_map_level_4_30x27_@2x.png"];
-    }else if (aqiLevel >= 201 && aqiLevel <= 300){
-        result = [UIImage imageNamed:@"aqi_map_level_5_30x27_@2x.png"];
-    }else if (aqiLevel > 300){
-        result = [UIImage imageNamed:@"aqi_map_level_6_30x27_@2x.png"];
-    }
-
-    return result;
-}
-
 - (void)showAqi:(NSString *)aqiLevel zoom:(int)zoomLevel {
 
-    if (zoomLevel >= 7){
-        [self showAqiBig:aqiLevel];
+    _aqiLevelStr = aqiLevel;
+    _aqiLevel = [aqiLevel intValue];
+    _zoomLevel = zoomLevel;
+
+    self.image = [[PM25ImageHelper shareInstance] image:zoomLevel with:_aqiLevel];
+
+    if (zoomLevel > 7){
+        _label.text = aqiLevel;
     } else {
-        [self showAqiSmall:aqiLevel];
+        _label.text = @"";
     }
 
+}
+
+- (void)refreshImage:(int)zoomLevel {
+    if (zoomLevel == _zoomLevel){
+        return;
+    }
+    self.image = [[PM25ImageHelper shareInstance] image:zoomLevel with:_aqiLevel];
+
+    if (zoomLevel > 7){
+        _label.text = _aqiLevelStr;
+    } else {
+        _label.text = @"";
+    }
 }
 
 

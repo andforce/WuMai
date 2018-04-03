@@ -142,5 +142,21 @@ NSString *const kMonitorsPos = @"pos";
     return copy;
 }
 
+- (BOOL)isEqual:(id)object {
+    if (self == object){
+        return YES;
+    }
 
+    if (![object isKindOfClass:[Monitors class]]){
+        return NO;
+    } else {
+        NSString *monitor = [NSString stringWithFormat:@"%@+%@" ,self.pos.lat, self.pos.lat];
+
+        Monitors *targetAnn = object;
+        NSString *target = [NSString stringWithFormat:@"%@+%@" ,targetAnn.pos.lat, targetAnn.pos.lat];
+
+        BOOL isEqual = [monitor isEqualToString:target];
+        return isEqual;
+    }
+}
 @end
