@@ -14,7 +14,6 @@
 #import "PM25MAAnnotationView.h"
 #import "PM25Api.h"
 
-
 @interface ViewController () <MAMapViewDelegate> {
     MAMapView *_mapView;
 
@@ -26,11 +25,17 @@
 
     MAMapPoint point1;
     MAMapPoint point2;
+    
+    IBOutlet UIButton *locationBtn;
 }
 
 @end
 
 @implementation ViewController
+
+- (IBAction)changeUserTrackMode:(id)sender {
+    [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,6 +55,8 @@
 
     ///把地图添加至view
     [self.view addSubview:_mapView];
+
+    [self.view sendSubviewToBack:_mapView];
 }
 
 
