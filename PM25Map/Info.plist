@@ -28,11 +28,11 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>App需要您的同意,才能始终访问位置</string>
+	<string>以便实时获取附近空气质量监测站数据</string>
 	<key>NSLocationUsageDescription</key>
-	<string>App需要您的同意,才能访问位置</string>
+	<string>以便获取附近空气质量监测站数据</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>App需要您的同意,才能在使用期间访问位置</string>
+	<string>以便在使用期间获取附近空气质量监测站数据</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
