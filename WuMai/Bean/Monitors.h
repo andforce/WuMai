@@ -1,8 +1,8 @@
 //
 //  Monitors.h
 //
-//  Created by   on 2018/4/1
-//  Copyright (c) 2018 __MyCompanyName__. All rights reserved.
+//  Created by Diyuan Wang on 2019/11/24
+//  Copyright (c) 2019 None All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

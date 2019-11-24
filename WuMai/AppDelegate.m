@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  WuMai
 //
-//  Created by 迪远 王 on 2019/11/24.
-//  Copyright © 2019 None. All rights reserved.
+//  Created by Diyuan Wang on 2019/11/24
+//  Copyright (c) 2019 None All rights reserved.
 //
 
 #import "AppDelegate.h"

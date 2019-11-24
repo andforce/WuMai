@@ -2,8 +2,8 @@
 //  PM25Api.m
 //  WuMai
 //
-//  Created by 迪远 王 on 2018/4/3.
-//  Copyright © 2018年 andforce. All rights reserved.
+//  Created by Diyuan Wang on 2019/11/24
+//  Copyright (c) 2019 None All rights reserved.
 //
 
 #import "PM25Api.h"
