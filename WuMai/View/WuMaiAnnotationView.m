@@ -7,7 +7,7 @@
 //
 
 #import "WuMaiAnnotationView.h"
-#import "PM25ImageHelper.h"
+#import "WuMaiImageHelper.h"
 
 @implementation WuMaiAnnotationView {
     UILabel *_label;
@@ -54,7 +54,7 @@
     _aqiLevel = [aqiLevel intValue];
     _zoomLevel = zoomLevel;
 
-    self.image = [[PM25ImageHelper shareInstance] image:zoomLevel with:_aqiLevel];
+    self.image = [[WuMaiImageHelper shareInstance] image:zoomLevel with:_aqiLevel];
 
     if (zoomLevel > 7) {
         _label.text = aqiLevel;
@@ -68,7 +68,7 @@
     if (zoomLevel == _zoomLevel) {
         return;
     }
-    self.image = [[PM25ImageHelper shareInstance] image:zoomLevel with:_aqiLevel];
+    self.image = [[WuMaiImageHelper shareInstance] image:zoomLevel with:_aqiLevel];
 
     if (zoomLevel > 7) {
         _label.text = _aqiLevelStr;

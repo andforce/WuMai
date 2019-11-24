@@ -1,5 +1,5 @@
 //
-//  PM25ImageHelper.h
+//  WuMaiImageHelper.h
 //  WuMai
 //
 //  Created by Diyuan Wang on 2019/11/24
@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIImage.h>
 
-@interface PM25ImageHelper : NSObject
+@interface WuMaiImageHelper : NSObject
 
-+ (PM25ImageHelper *)shareInstance;
++ (WuMaiImageHelper *)shareInstance;
 
 - (UIImage *)image:(int)zoomLevel with:(int)aqiLevel;
 

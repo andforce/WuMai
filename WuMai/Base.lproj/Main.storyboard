@@ -36,7 +36,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="locationBtn" destination="J7m-EL-BSW" id="ZA6-QS-w2u"/>
+                        <outlet property="_showMyLocation" destination="J7m-EL-BSW" id="ZA6-QS-w2u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

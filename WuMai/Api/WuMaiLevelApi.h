@@ -1,5 +1,5 @@
 //
-//  PM25Api.h
+//  WuMaiLevelApi.h
 //  WuMai
 //
 //  Created by Diyuan Wang on 2019/11/24
@@ -12,7 +12,7 @@
 
 typedef void (^Handler)(NSArray<Monitors *> *monitors);
 
-@interface PM25Api : NSObject
+@interface WuMaiLevelApi : NSObject
 
 - (void)fetchMonitors:(float)zoomLevel leftLat:(double)llat leftLon:(double)llon rightLat:(double)rlat rightLon:(double)rlon handler:(Handler)handler;
 

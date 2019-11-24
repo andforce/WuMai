@@ -12,21 +12,21 @@
 #import "DataModels.h"
 #import "WuMainPointAnnotation.h"
 #import "WuMaiAnnotationView.h"
-#import "PM25Api.h"
+#import "WuMaiLevelApi.h"
 
 @interface ViewController () <MAMapViewDelegate> {
     MAMapView *_mapView;
 
-    PM25Api *_pm25Api;
+    WuMaiLevelApi *_maiLevelApi;
 
-    NSMutableArray<Monitors *> *_datas;
+    NSMutableArray<Monitors *> *_monitors;
 
     int _lastZoomLevel;
 
-    MAMapPoint point1;
-    MAMapPoint point2;
+    MAMapPoint _maMapPoint1;
+    MAMapPoint _maMapPoint2;
 
-    IBOutlet UIButton *locationBtn;
+    IBOutlet UIButton *_showMyLocation;
 }
 
 @end
@@ -40,9 +40,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    _pm25Api = [[PM25Api alloc] init];
+    _maiLevelApi = [[WuMaiLevelApi alloc] init];
 
-    _datas = [NSMutableArray array];
+    _monitors = [NSMutableArray array];
 
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     _mapView.logoCenter = CGPointMake(self.view.bounds.size.width / 2, _mapView.logoCenter.y);
@@ -77,10 +77,10 @@
     CLLocationCoordinate2D left = [mapView convertPoint:leftBottom toCoordinateFromView:mapView];
     CLLocationCoordinate2D right = [mapView convertPoint:rightTop toCoordinateFromView:mapView];
 
-    [_pm25Api fetchMonitors:_mapView.zoomLevel leftLat:left.latitude leftLon:left.longitude rightLat:right.latitude rightLon:right.longitude handler:^(NSArray<Monitors *> *monitors) {
+    [_maiLevelApi fetchMonitors:_mapView.zoomLevel leftLat:left.latitude leftLon:left.longitude rightLat:right.latitude rightLon:right.longitude handler:^(NSArray<Monitors *> *monitors) {
         NSMutableArray<Monitors *> *toAdd = [NSMutableArray array];
         for (Monitors *m in monitors) {
-            if ([_datas containsObject:m]) {
+            if ([_monitors containsObject:m]) {
 
             } else {
                 [toAdd addObject:m];
@@ -91,9 +91,9 @@
 
         [mapView addAnnotations:toAddAnns];
 
-        NSLog(@"LIFE_CYCLE:fetchMonitors:%d, toAdd:%d, DATA:%d", monitors.count, toAdd.count, _datas.count);
+        NSLog(@"LIFE_CYCLE:fetchMonitors:%d, toAdd:%d, DATA:%d", monitors.count, toAdd.count, _monitors.count);
 
-        [_datas addObjectsFromArray:toAdd];
+        [_monitors addObjectsFromArray:toAdd];
     }];
 }
 
@@ -103,7 +103,7 @@
 - (void)mapView:(MAMapView *)mapView mapWillMoveByUser:(BOOL)wasUserAction {
 
     if (wasUserAction){
-        point1 = MAMapPointForCoordinate(mapView.centerCoordinate);
+        _maMapPoint1 = MAMapPointForCoordinate(mapView.centerCoordinate);
     }
 }
 
@@ -112,13 +112,13 @@
     NSLog(@"LIFE_CYCLE:mapDidMoveByUser-wasUserAction:%@", wasUserAction ? @"YES" : @"NO");
 
     if (wasUserAction){
-        point2 = MAMapPointForCoordinate(mapView.centerCoordinate);
-        CLLocationDistance distance = MAMetersBetweenMapPoints(point1, point2);
+        _maMapPoint2 = MAMapPointForCoordinate(mapView.centerCoordinate);
+        CLLocationDistance distance = MAMetersBetweenMapPoints(_maMapPoint1, _maMapPoint2);
         NSLog(@"LIFE_CYCLE:mapDidMoveByUser-移动距离:%f", distance);
         if (distance > 50 * 1000){
             [self fetchMonitors:mapView];
         }
-    } else if (_datas.count == 0) {
+    } else if (_monitors.count == 0) {
         [self fetchMonitors:mapView];
     }
 }
@@ -146,7 +146,7 @@
             }
         }
 
-        if (wasUserAction || _datas.count == 0) {
+        if (wasUserAction || _monitors.count == 0) {
             [self fetchMonitors:mapView];
         }
     }
