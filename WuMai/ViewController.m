@@ -80,7 +80,7 @@
     [_maiLevelApi fetchMonitors:_mapView.zoomLevel leftLat:left.latitude leftLon:left.longitude rightLat:right.latitude rightLon:right.longitude handler:^(NSArray<Monitors *> *monitors) {
         NSMutableArray<Monitors *> *toAdd = [NSMutableArray array];
         for (Monitors *m in monitors) {
-            if ([_monitors containsObject:m]) {
+            if ([self->_monitors containsObject:m]) {
 
             } else {
                 [toAdd addObject:m];
@@ -91,9 +91,9 @@
 
         [mapView addAnnotations:toAddAnns];
 
-        NSLog(@"LIFE_CYCLE:fetchMonitors:%d, toAdd:%d, DATA:%d", monitors.count, toAdd.count, _monitors.count);
+        NSLog(@"LIFE_CYCLE:fetchMonitors:%lu, toAdd:%lu, DATA:%lu", (unsigned long)monitors.count, (unsigned long)toAdd.count, (unsigned long)self->_monitors.count);
 
-        [_monitors addObjectsFromArray:toAdd];
+        [self->_monitors addObjectsFromArray:toAdd];
     }];
 }
 

@@ -17,36 +17,26 @@ PODS:
   - AMap3DMap-NO-IDFA (7.1.0):
     - AMapFoundation-NO-IDFA (~> 1.5)
   - AMapFoundation-NO-IDFA (1.6.0)
-  - AMapLocation-NO-IDFA (2.6.3):
-    - AMapFoundation-NO-IDFA (~> 1.4)
-  - AMapSearch-NO-IDFA (7.1.0):
-    - AMapFoundation-NO-IDFA (~> 1.4)
-  - JSONModel (1.7.0)
+  - JSONModel (1.8.0)
 
 DEPENDENCIES:
-  - AFNetworking (~> 3.2.0)
+  - AFNetworking (~> 3.2.1)
   - AMap3DMap-NO-IDFA (~> 7.1.0)
-  - AMapLocation-NO-IDFA (~> 2.6.3)
-  - AMapSearch-NO-IDFA (~> 7.1.0)
-  - JSONModel (~> 1.7.0)
+  - JSONModel (~> 1.8.0)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - AMap3DMap-NO-IDFA
     - AMapFoundation-NO-IDFA
-    - AMapLocation-NO-IDFA
-    - AMapSearch-NO-IDFA
     - JSONModel
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   AMap3DMap-NO-IDFA: 93a9dfb7571d33156668a4428141c6aaa80edd80
   AMapFoundation-NO-IDFA: c828f5c0b6181111c9464840872cd53fdbc0db6f
-  AMapLocation-NO-IDFA: f22a480573aa18c521946f13d49521f042a7dca6
-  AMapSearch-NO-IDFA: 439cf79b729210a33431cfa65995b59184d0f388
-  JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
+  JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
 
-PODFILE CHECKSUM: ea40838edb8662fa4d2d35df0fbaf360de957f9a
+PODFILE CHECKSUM: bda6ae2357822a22570e306b034d1936140a4518
 
 COCOAPODS: 1.8.4
