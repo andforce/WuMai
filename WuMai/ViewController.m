@@ -10,8 +10,8 @@
 
 #import <MAMapKit/MAMapKit.h>
 #import "DataModels.h"
-#import "PM25MAPointAnnotation.h"
-#import "PM25MAAnnotationView.h"
+#import "WuMainPointAnnotation.h"
+#import "WuMaiAnnotationView.h"
 #import "PM25Api.h"
 
 @interface ViewController () <MAMapViewDelegate> {
@@ -87,7 +87,7 @@
             }
         }
 
-        NSArray<PM25MAPointAnnotation *> *toAddAnns = [self monitorsToAnnotations:toAdd zoom:(int) mapView.zoomLevel];
+        NSArray<WuMainPointAnnotation *> *toAddAnns = [self monitorsToAnnotations:toAdd zoom:(int) mapView.zoomLevel];
 
         [mapView addAnnotations:toAddAnns];
 
@@ -140,8 +140,8 @@
         NSArray *annotations = mapView.annotations;
 
         for (id <MAAnnotation> annotation in annotations) {
-            if ([annotation isKindOfClass:[PM25MAPointAnnotation class]]) {
-                PM25MAAnnotationView *annotationView = (PM25MAAnnotationView *) [mapView viewForAnnotation:annotation];
+            if ([annotation isKindOfClass:[WuMainPointAnnotation class]]) {
+                WuMaiAnnotationView *annotationView = (WuMaiAnnotationView *) [mapView viewForAnnotation:annotation];
                 [annotationView refreshImage:(int) mapView.zoomLevel];
             }
         }
@@ -158,13 +158,13 @@
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation {
 
-    if ([annotation isKindOfClass:[PM25MAPointAnnotation class]]) {
+    if ([annotation isKindOfClass:[WuMainPointAnnotation class]]) {
 
-        PM25MAPointAnnotation *pm25MAPointAnnotation = (PM25MAPointAnnotation *) annotation;
+        WuMainPointAnnotation *pm25MAPointAnnotation = (WuMainPointAnnotation *) annotation;
         static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
-        PM25MAAnnotationView *annotationView = (PM25MAAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
+        WuMaiAnnotationView *annotationView = (WuMaiAnnotationView *) [mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
         if (annotationView == nil) {
-            annotationView = [[PM25MAAnnotationView alloc] initWithAnnotation:pm25MAPointAnnotation reuseIdentifier:pointReuseIndentifier];
+            annotationView = [[WuMaiAnnotationView alloc] initWithAnnotation:pm25MAPointAnnotation reuseIdentifier:pointReuseIndentifier];
         }
         annotationView.canShowCallout = YES;       //设置气泡可以弹出，默认为NO
         annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
@@ -181,11 +181,11 @@
     return nil;
 }
 
-- (NSMutableArray<PM25MAPointAnnotation *> *)monitorsToAnnotations:(NSArray *)monitorsArr zoom:(int)zoomLevel {
+- (NSMutableArray<WuMainPointAnnotation *> *)monitorsToAnnotations:(NSArray *)monitorsArr zoom:(int)zoomLevel {
     NSMutableArray *result = [NSMutableArray array];
 
     for (Monitors *monitors in monitorsArr) {
-        PM25MAPointAnnotation *annotation = [[PM25MAPointAnnotation alloc] init];
+        WuMainPointAnnotation *annotation = [[WuMainPointAnnotation alloc] init];
         double lat = [monitors.pos.lat doubleValue];
         double lon = [monitors.pos.lng doubleValue];
         annotation.coordinate = CLLocationCoordinate2DMake(lat, lon);
@@ -197,8 +197,8 @@
     return result;
 }
 
-- (PM25MAPointAnnotation *)monitorToAnnotation:(Monitors *)monitors zoom:(int)zoomLevel {
-    PM25MAPointAnnotation *annotation = [[PM25MAPointAnnotation alloc] init];
+- (WuMainPointAnnotation *)monitorToAnnotation:(Monitors *)monitors zoom:(int)zoomLevel {
+    WuMainPointAnnotation *annotation = [[WuMainPointAnnotation alloc] init];
     double lat = [monitors.pos.lat doubleValue];
     double lon = [monitors.pos.lng doubleValue];
     annotation.coordinate = CLLocationCoordinate2DMake(lat, lon);

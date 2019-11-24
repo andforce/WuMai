@@ -1,5 +1,5 @@
 //
-//  PM25MAAnnotationView.h
+//  WuMaiAnnotationView.h
 //  WuMai
 //
 //  Created by Diyuan Wang on 2019/11/24
@@ -8,7 +8,7 @@
 
 #import <MAMapKit/MAMapKit.h>
 
-@interface PM25MAAnnotationView : MAAnnotationView
+@interface WuMaiAnnotationView : MAAnnotationView
 
 - (void)showAqi:(NSString *)aqiLevel zoom:(int)zoomLevel;
 

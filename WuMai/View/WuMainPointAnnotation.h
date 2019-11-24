@@ -1,5 +1,5 @@
 //
-//  PM25MAPointAnnotation.h
+//  WuMainPointAnnotation.h
 //  WuMai
 //
 //  Created by Diyuan Wang on 2019/11/24
@@ -9,7 +9,7 @@
 #import <MAMapKit/MAMapKit.h>
 #import "DataModels.h"
 
-@interface PM25MAPointAnnotation : MAPointAnnotation
+@interface WuMainPointAnnotation : MAPointAnnotation
 
 
 // 检测点

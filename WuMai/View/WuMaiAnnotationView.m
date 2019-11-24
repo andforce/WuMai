@@ -1,15 +1,15 @@
 //
-//  PM25MAAnnotationView.m
+//  WuMaiAnnotationView.m
 //  WuMai
 //
 //  Created by Diyuan Wang on 2019/11/24
 //  Copyright (c) 2019 None All rights reserved.
 //
 
-#import "PM25MAAnnotationView.h"
+#import "WuMaiAnnotationView.h"
 #import "PM25ImageHelper.h"
 
-@implementation PM25MAAnnotationView {
+@implementation WuMaiAnnotationView {
     UILabel *_label;
     int _aqiLevel;
     NSString *_aqiLevelStr;

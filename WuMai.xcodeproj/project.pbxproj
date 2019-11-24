@@ -27,8 +27,8 @@
 		3AE626F2238A95C1000BBD7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE626F1238A95C1000BBD7C /* Assets.xcassets */; };
 		3AE626F5238A95C1000BBD7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE626F3238A95C1000BBD7C /* LaunchScreen.storyboard */; };
 		3AE626F8238A95C1000BBD7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE626F7238A95C1000BBD7C /* main.m */; };
-		3AE62703238A9820000BBD7C /* PM25MAAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE62700238A9820000BBD7C /* PM25MAAnnotationView.m */; };
-		3AE62704238A9820000BBD7C /* PM25MAPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE62701238A9820000BBD7C /* PM25MAPointAnnotation.m */; };
+		3AE62703238A9820000BBD7C /* WuMaiAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE62700238A9820000BBD7C /* WuMaiAnnotationView.m */; };
+		3AE62704238A9820000BBD7C /* WuMainPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE62701238A9820000BBD7C /* WuMainPointAnnotation.m */; };
 		3AE62711238A982A000BBD7C /* PM25Module.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE62707238A982A000BBD7C /* PM25Module.m */; };
 		3AE62712238A982A000BBD7C /* Pos.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE6270B238A982A000BBD7C /* Pos.m */; };
 		3AE62713238A982A000BBD7C /* Pm25.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE6270D238A982A000BBD7C /* Pm25.m */; };
@@ -64,10 +64,10 @@
 		3AE626F4238A95C1000BBD7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3AE626F6238A95C1000BBD7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AE626F7238A95C1000BBD7C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3AE626FF238A9820000BBD7C /* PM25MAPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PM25MAPointAnnotation.h; sourceTree = "<group>"; };
-		3AE62700238A9820000BBD7C /* PM25MAAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PM25MAAnnotationView.m; sourceTree = "<group>"; };
-		3AE62701238A9820000BBD7C /* PM25MAPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PM25MAPointAnnotation.m; sourceTree = "<group>"; };
-		3AE62702238A9820000BBD7C /* PM25MAAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PM25MAAnnotationView.h; sourceTree = "<group>"; };
+		3AE626FF238A9820000BBD7C /* WuMainPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WuMainPointAnnotation.h; sourceTree = "<group>"; };
+		3AE62700238A9820000BBD7C /* WuMaiAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WuMaiAnnotationView.m; sourceTree = "<group>"; };
+		3AE62701238A9820000BBD7C /* WuMainPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WuMainPointAnnotation.m; sourceTree = "<group>"; };
+		3AE62702238A9820000BBD7C /* WuMaiAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WuMaiAnnotationView.h; sourceTree = "<group>"; };
 		3AE62706238A982A000BBD7C /* Pm25.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pm25.h; sourceTree = "<group>"; };
 		3AE62707238A982A000BBD7C /* PM25Module.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PM25Module.m; sourceTree = "<group>"; };
 		3AE62708238A982A000BBD7C /* DataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModels.h; sourceTree = "<group>"; };
@@ -157,10 +157,10 @@
 		3AE626FE238A9820000BBD7C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3AE626FF238A9820000BBD7C /* PM25MAPointAnnotation.h */,
-				3AE62700238A9820000BBD7C /* PM25MAAnnotationView.m */,
-				3AE62701238A9820000BBD7C /* PM25MAPointAnnotation.m */,
-				3AE62702238A9820000BBD7C /* PM25MAAnnotationView.h */,
+				3AE626FF238A9820000BBD7C /* WuMainPointAnnotation.h */,
+				3AE62700238A9820000BBD7C /* WuMaiAnnotationView.m */,
+				3AE62701238A9820000BBD7C /* WuMainPointAnnotation.m */,
+				3AE62702238A9820000BBD7C /* WuMaiAnnotationView.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -327,14 +327,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AE62703238A9820000BBD7C /* PM25MAAnnotationView.m in Sources */,
+				3AE62703238A9820000BBD7C /* WuMaiAnnotationView.m in Sources */,
 				3AE62713238A982A000BBD7C /* Pm25.m in Sources */,
 				3AE626EA238A95C0000BBD7C /* ViewController.m in Sources */,
 				3AE62712238A982A000BBD7C /* Pos.m in Sources */,
 				3AE62711238A982A000BBD7C /* PM25Module.m in Sources */,
 				3AE62714238A982A000BBD7C /* Data.m in Sources */,
 				3AE626F0238A95C0000BBD7C /* WuMai.xcdatamodeld in Sources */,
-				3AE62704238A9820000BBD7C /* PM25MAPointAnnotation.m in Sources */,
+				3AE62704238A9820000BBD7C /* WuMainPointAnnotation.m in Sources */,
 				3AE626F8238A95C1000BBD7C /* main.m in Sources */,
 				3AE62715238A982A000BBD7C /* Monitors.m in Sources */,
 				3AE6271A238A9838000BBD7C /* PM25Api.m in Sources */,
