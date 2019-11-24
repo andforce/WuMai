@@ -16,16 +16,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7m-EL-BSW">
-                                <rect key="frame" x="184" y="832" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7m-EL-BSW">
+                                <rect key="frame" x="183" y="806" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="J7m-EL-BSW" secondAttribute="height" multiplier="1:1" id="jy0-8g-AKA"/>
+                                    <constraint firstAttribute="width" constant="48" id="wPC-Na-Qay"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="location.png"/>
                                 <connections>
                                     <action selector="changeUserTrackMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vpJ-2e-Ksm"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="J7m-EL-BSW" secondAttribute="bottom" constant="8" id="KRJ-Ub-UgG"/>
+                            <constraint firstItem="J7m-EL-BSW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="TUc-M8-Vsq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -37,4 +44,7 @@
             <point key="canvasLocation" x="139" y="138"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="location.png" width="102" height="102"/>
+    </resources>
 </document>

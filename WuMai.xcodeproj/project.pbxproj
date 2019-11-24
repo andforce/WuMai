@@ -19,6 +19,7 @@
 		3A3A42E9238AA0AD00DD05B5 /* aqi_map_point_level_1_8x8_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A3A42DD238AA0AD00DD05B5 /* aqi_map_point_level_1_8x8_@2x.png */; };
 		3A3A42EA238AA0AD00DD05B5 /* aqi_map_level_6_30x27_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A3A42DE238AA0AD00DD05B5 /* aqi_map_level_6_30x27_@2x.png */; };
 		3A3A42EB238AA0AD00DD05B5 /* aqi_map_point_level_3_8x8_@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A3A42DF238AA0AD00DD05B5 /* aqi_map_point_level_3_8x8_@2x.png */; };
+		3A3A42F1238AAB0900DD05B5 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A3A42F0238AAB0900DD05B5 /* location.png */; };
 		3AE626E7238A95C0000BBD7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE626E6238A95C0000BBD7C /* AppDelegate.m */; };
 		3AE626EA238A95C0000BBD7C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE626E9238A95C0000BBD7C /* ViewController.m */; };
 		3AE626ED238A95C0000BBD7C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AE626EB238A95C0000BBD7C /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		3A3A42DD238AA0AD00DD05B5 /* aqi_map_point_level_1_8x8_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aqi_map_point_level_1_8x8_@2x.png"; sourceTree = "<group>"; };
 		3A3A42DE238AA0AD00DD05B5 /* aqi_map_level_6_30x27_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aqi_map_level_6_30x27_@2x.png"; sourceTree = "<group>"; };
 		3A3A42DF238AA0AD00DD05B5 /* aqi_map_point_level_3_8x8_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aqi_map_point_level_3_8x8_@2x.png"; sourceTree = "<group>"; };
+		3A3A42F0238AAB0900DD05B5 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		3AE626E2238A95C0000BBD7C /* 霾值.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "霾值.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE626E5238A95C0000BBD7C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3AE626E6238A95C0000BBD7C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		3AE626D9238A95C0000BBD7C = {
 			isa = PBXGroup;
 			children = (
+				3A3A42F0238AAB0900DD05B5 /* location.png */,
 				3A3A42D8238AA0AD00DD05B5 /* aqi_map_level_1_30x27_@2x.png */,
 				3A3A42D7238AA0AD00DD05B5 /* aqi_map_level_2_30x27_@2x.png */,
 				3A3A42D6238AA0AD00DD05B5 /* aqi_map_level_3_30x27_@2x.png */,
@@ -266,6 +269,7 @@
 				3A3A42E5238AA0AD00DD05B5 /* aqi_map_point_level_5_8x8_@2x.png in Resources */,
 				3AE626ED238A95C0000BBD7C /* Main.storyboard in Resources */,
 				3A3A42E2238AA0AD00DD05B5 /* aqi_map_level_3_30x27_@2x.png in Resources */,
+				3A3A42F1238AAB0900DD05B5 /* location.png in Resources */,
 				3A3A42E0238AA0AD00DD05B5 /* aqi_map_level_5_30x27_@2x.png in Resources */,
 				3A3A42E7238AA0AD00DD05B5 /* aqi_map_point_level_6_8x8_@2x.png in Resources */,
 				3A3A42E1238AA0AD00DD05B5 /* aqi_map_point_level_2_8x8_@2x.png in Resources */,
