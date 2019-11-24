@@ -47,12 +47,16 @@
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
     _mapView.logoCenter = CGPointMake(self.view.bounds.size.width / 2, _mapView.logoCenter.y);
 
-    _mapView.customizeUserLocationAccuracyCircleRepresentation = YES;
+    _mapView.delegate = self;
+    _mapView.showsUserLocation = YES;
     _mapView.userTrackingMode = MAUserTrackingModeFollow;
+    
+    _mapView.customizeUserLocationAccuracyCircleRepresentation = YES;
+    
     _mapView.showsCompass = NO;
     _mapView.showsScale = NO;
     _mapView.rotateEnabled = NO;
-    _mapView.delegate = self;
+    
 
     ///把地图添加至view
     [self.view addSubview:_mapView];
@@ -97,6 +101,10 @@
 
 
 #pragma 移动
+
+-(void)mapViewRequireLocationAuth:(CLLocationManager *)locationManager{
+    [locationManager requestAlwaysAuthorization];
+}
 
 - (void)mapView:(MAMapView *)mapView mapWillMoveByUser:(BOOL)wasUserAction {
 
