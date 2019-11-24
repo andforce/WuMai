@@ -22,10 +22,6 @@ PODS:
   - AMapSearch-NO-IDFA (7.1.0):
     - AMapFoundation-NO-IDFA (~> 1.4)
   - JSONModel (1.7.0)
-  - SDWebImage (3.7.6):
-    - SDWebImage/Core (= 3.7.6)
-  - SDWebImage/Core (3.7.6)
-  - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.0)
@@ -33,8 +29,6 @@ DEPENDENCIES:
   - AMapLocation-NO-IDFA (~> 2.6.3)
   - AMapSearch-NO-IDFA (~> 7.1.0)
   - JSONModel (~> 1.7.0)
-  - SDWebImage (~> 3.7.5)
-  - SVProgressHUD (~> 2.2.5)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -44,8 +38,6 @@ SPEC REPOS:
     - AMapLocation-NO-IDFA
     - AMapSearch-NO-IDFA
     - JSONModel
-    - SDWebImage
-    - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -54,9 +46,7 @@ SPEC CHECKSUMS:
   AMapLocation-NO-IDFA: f22a480573aa18c521946f13d49521f042a7dca6
   AMapSearch-NO-IDFA: 439cf79b729210a33431cfa65995b59184d0f388
   JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
-  SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 1ee2f0cfae01b607cedbdab55038e50fa25f86fb
+PODFILE CHECKSUM: ea40838edb8662fa4d2d35df0fbaf360de957f9a
 
 COCOAPODS: 1.8.4

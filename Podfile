@@ -8,6 +8,4 @@ target 'WuMai' do
 
 	pod 'AFNetworking', '~> 3.2.0'
 	pod 'JSONModel', '~> 1.7.0' 			#2018/03/04
-	pod 'SVProgressHUD', '~> 2.2.5'			#2018/03/04
-	pod 'SDWebImage', '~>3.7.5'			#2018/03/04
 end
