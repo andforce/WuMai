@@ -51,7 +51,7 @@
 		3A3A42DD238AA0AD00DD05B5 /* aqi_map_point_level_1_8x8_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aqi_map_point_level_1_8x8_@2x.png"; sourceTree = "<group>"; };
 		3A3A42DE238AA0AD00DD05B5 /* aqi_map_level_6_30x27_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aqi_map_level_6_30x27_@2x.png"; sourceTree = "<group>"; };
 		3A3A42DF238AA0AD00DD05B5 /* aqi_map_point_level_3_8x8_@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aqi_map_point_level_3_8x8_@2x.png"; sourceTree = "<group>"; };
-		3AE626E2238A95C0000BBD7C /* WuMai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WuMai.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AE626E2238A95C0000BBD7C /* 霾值.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "霾值.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE626E5238A95C0000BBD7C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3AE626E6238A95C0000BBD7C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3AE626E8238A95C0000BBD7C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		3AE626E3238A95C0000BBD7C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3AE626E2238A95C0000BBD7C /* WuMai.app */,
+				3AE626E2238A95C0000BBD7C /* 霾值.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -216,7 +216,7 @@
 			);
 			name = WuMai;
 			productName = WuMai;
-			productReference = 3AE626E2238A95C0000BBD7C /* WuMai.app */;
+			productReference = 3AE626E2238A95C0000BBD7C /* 霾值.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -486,7 +486,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.diyuan.WuMai;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "霾值";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -504,7 +504,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.diyuan.WuMai;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "霾值";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
