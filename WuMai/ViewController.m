@@ -33,7 +33,7 @@
 
 @implementation ViewController
 
-- (IBAction)changeUserTrackMode:(id)sender {
+- (IBAction)showMyLocation:(id)sender {
     [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
 }
 
