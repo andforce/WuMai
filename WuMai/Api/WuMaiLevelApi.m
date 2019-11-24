@@ -24,15 +24,19 @@
         [_browser.requestSerializer setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36" forHTTPHeaderField:@"User-Agent"];
 
     }
-
     return self;
 }
 
+- (void)findAirMonitors:(float)zoomLevel leftLocation:(CLLocationCoordinate2D)left rightLocation:(CLLocationCoordinate2D)right handler:(void (^)(NSArray<Monitors *> *))handler {
+    double llat = left.latitude;
+    double llon = left.longitude;
+    double rlat = right.latitude;
+    double rlon = right.longitude;
 
-- (void)fetchMonitors:(float)zoomLevel leftLat:(double)llat leftLon:(double)llon rightLat:(double)rlat rightLon:(double)rlon handler:(Handler)handler {
     NSDate *date = [NSDate date];
     long timeStamp = (NSInteger) [date timeIntervalSince1970];
-    NSString *url = [NSString stringWithFormat:@"https://sp0.baidu.com/5LMDcjW6BwF3otqbppnN2DJv/weather.pae.baidu.com/weather/data/Monitorlist?z=%d&lb=%f,%f&rt=%f,%f&_=%ld", (int) zoomLevel, llon, llat, rlon, rlat, timeStamp];
+    NSString *url = [NSString stringWithFormat:@"https://sp0.baidu.com/5LMDcjW6BwF3otqbppnN2DJv/weather.pae.baidu.com/weather/data/Monitorlist?z=%d&lb=%f,%f&rt=%f,%f&_=%ld",
+                                               (int) zoomLevel, llon, llat, rlon, rlat, timeStamp];
 
     [_browser GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
 
@@ -54,6 +58,5 @@
         handler(nil);
     }];
 }
-
 
 @end

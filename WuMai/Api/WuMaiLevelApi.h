@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @class Monitors;
 
-typedef void (^Handler)(NSArray<Monitors *> *monitors);
-
 @interface WuMaiLevelApi : NSObject
 
-- (void)fetchMonitors:(float)zoomLevel leftLat:(double)llat leftLon:(double)llon rightLat:(double)rlat rightLon:(double)rlon handler:(Handler)handler;
+- (void)findAirMonitors:(float)zoomLevel leftLocation:(CLLocationCoordinate2D)left rightLocation:(CLLocationCoordinate2D)right handler:(void (^)(NSArray<Monitors *> *))handler;
 
 @end

@@ -66,9 +66,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)fetchMonitors:(MAMapView *)mapView {
+- (void)findAirMonitors:(MAMapView *)mapView {
 
-    NSLog(@"LIFE_CYCLE:fetchMonitors: 开始获取数据");
+    NSLog(@"----->> :findAirMonitors: 开始获取数据");
 
     CGRect frame = mapView.frame;
     CGPoint leftBottom = CGPointMake(frame.origin.x, frame.origin.y + frame.size.height);
@@ -77,12 +77,10 @@
     CLLocationCoordinate2D left = [mapView convertPoint:leftBottom toCoordinateFromView:mapView];
     CLLocationCoordinate2D right = [mapView convertPoint:rightTop toCoordinateFromView:mapView];
 
-    [_maiLevelApi fetchMonitors:_mapView.zoomLevel leftLat:left.latitude leftLon:left.longitude rightLat:right.latitude rightLon:right.longitude handler:^(NSArray<Monitors *> *monitors) {
+    [_maiLevelApi findAirMonitors:(float) _mapView.zoomLevel leftLocation:left rightLocation:right handler:^(NSArray<Monitors *> *monitors) {
         NSMutableArray<Monitors *> *toAdd = [NSMutableArray array];
         for (Monitors *m in monitors) {
-            if ([self->_monitors containsObject:m]) {
-
-            } else {
+            if (![self->_monitors containsObject:m]) {
                 [toAdd addObject:m];
             }
         }
@@ -91,7 +89,7 @@
 
         [mapView addAnnotations:toAddAnns];
 
-        NSLog(@"LIFE_CYCLE:fetchMonitors:%lu, toAdd:%lu, DATA:%lu", (unsigned long)monitors.count, (unsigned long)toAdd.count, (unsigned long)self->_monitors.count);
+        NSLog(@"----->> :findAirMonitors:%lu, toAdd:%lu, DATA:%lu", (unsigned long) monitors.count, (unsigned long) toAdd.count, (unsigned long) self->_monitors.count);
 
         [self->_monitors addObjectsFromArray:toAdd];
     }];
@@ -102,38 +100,38 @@
 
 - (void)mapView:(MAMapView *)mapView mapWillMoveByUser:(BOOL)wasUserAction {
 
-    if (wasUserAction){
+    if (wasUserAction) {
         _maMapPoint1 = MAMapPointForCoordinate(mapView.centerCoordinate);
     }
 }
 
 - (void)mapView:(MAMapView *)mapView mapDidMoveByUser:(BOOL)wasUserAction {
 
-    NSLog(@"LIFE_CYCLE:mapDidMoveByUser-wasUserAction:%@", wasUserAction ? @"YES" : @"NO");
+    NSLog(@"----->> :mapDidMoveByUser-wasUserAction:%@", wasUserAction ? @"YES" : @"NO");
 
-    if (wasUserAction){
+    if (wasUserAction) {
         _maMapPoint2 = MAMapPointForCoordinate(mapView.centerCoordinate);
         CLLocationDistance distance = MAMetersBetweenMapPoints(_maMapPoint1, _maMapPoint2);
-        NSLog(@"LIFE_CYCLE:mapDidMoveByUser-移动距离:%f", distance);
-        if (distance > 50 * 1000){
-            [self fetchMonitors:mapView];
+        NSLog(@"----->> :mapDidMoveByUser-移动距离:%f", distance);
+        if (distance > 50 * 1000) {
+            [self findAirMonitors:mapView];
         }
     } else if (_monitors.count == 0) {
-        [self fetchMonitors:mapView];
+        [self findAirMonitors:mapView];
     }
 }
 
 - (void)mapView:(MAMapView *)mapView mapWillZoomByUser:(BOOL)wasUserAction {
     _lastZoomLevel = (int) mapView.zoomLevel;
 
-    NSLog(@"LIFE_CYCLE:mapWillZoomByUser-wasUserAction:%@, ZoomLevel:%d", wasUserAction ? @"YES" : @"NO", _lastZoomLevel);
+    NSLog(@"----->> :mapWillZoomByUser-wasUserAction:%@, ZoomLevel:%d", wasUserAction ? @"YES" : @"NO", _lastZoomLevel);
 }
 
 - (void)mapView:(MAMapView *)mapView mapDidZoomByUser:(BOOL)wasUserAction {
 
     int nowZoomLevel = (int) mapView.zoomLevel;
 
-    NSLog(@"LIFE_CYCLE:mapDidZoomByUser-wasUserAction:%@, ZoomLevel:%d", wasUserAction ? @"YES" : @"NO", nowZoomLevel);
+    NSLog(@"----->> :mapDidZoomByUser-wasUserAction:%@, ZoomLevel:%d", wasUserAction ? @"YES" : @"NO", nowZoomLevel);
 
     if (_lastZoomLevel != nowZoomLevel) {
 
@@ -147,13 +145,13 @@
         }
 
         if (wasUserAction || _monitors.count == 0) {
-            [self fetchMonitors:mapView];
+            [self findAirMonitors:mapView];
         }
     }
 }
 
 - (void)mapView:(MAMapView *)mapView didAddAnnotationViews:(NSArray *)views {
-    NSLog(@"LIFE_CYCLE:didAddAnnotationViews");
+    NSLog(@"----->> :didAddAnnotationViews");
 }
 
 - (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation {
@@ -166,8 +164,10 @@
         if (annotationView == nil) {
             annotationView = [[WuMaiAnnotationView alloc] initWithAnnotation:pm25MAPointAnnotation reuseIdentifier:pointReuseIndentifier];
         }
-        annotationView.canShowCallout = YES;       //设置气泡可以弹出，默认为NO
-        annotationView.draggable = NO;        //设置标注可以拖动，默认为NO
+        //设置气泡可以弹出，默认为NO
+        annotationView.canShowCallout = YES;
+        //设置标注可以拖动，默认为NO
+        annotationView.draggable = NO;
 
         Monitors *monitor = pm25MAPointAnnotation.monitors;
         Pm25 *pm25 = monitor.pm25;
