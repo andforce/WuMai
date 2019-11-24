@@ -11,7 +11,7 @@
 
 @interface PM25ImageHelper : NSObject
 
-+ (PM25ImageHelper *) shareInstance;
++ (PM25ImageHelper *)shareInstance;
 
 - (UIImage *)image:(int)zoomLevel with:(int)aqiLevel;
 

@@ -45,6 +45,7 @@
     _datas = [NSMutableArray array];
 
     _mapView = [[MAMapView alloc] initWithFrame:self.view.bounds];
+    _mapView.logoCenter = CGPointMake(self.view.bounds.size.width / 2, _mapView.logoCenter.y);
 
     _mapView.customizeUserLocationAccuracyCircleRepresentation = YES;
     _mapView.userTrackingMode = MAUserTrackingModeFollow;

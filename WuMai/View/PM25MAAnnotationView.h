@@ -10,8 +10,8 @@
 
 @interface PM25MAAnnotationView : MAAnnotationView
 
--(void)showAqi:(NSString *)aqiLevel zoom:(int)zoomLevel;
+- (void)showAqi:(NSString *)aqiLevel zoom:(int)zoomLevel;
 
--(void) refreshImage:(int)zoomLevel;
+- (void)refreshImage:(int)zoomLevel;
 
 @end

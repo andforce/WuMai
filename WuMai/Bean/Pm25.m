@@ -26,30 +26,27 @@ NSString *const kPm25Val = @"val";
 @synthesize val = _val;
 
 
-+ (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
-{
++ (instancetype)modelObjectWithDictionary:(NSDictionary *)dict {
     return [[self alloc] initWithDictionary:dict];
 }
 
-- (instancetype)initWithDictionary:(NSDictionary *)dict
-{
+- (instancetype)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
-    
+
     // This check serves to make sure that a non-NSDictionary object
     // passed into the model class doesn't break the parsing.
-    if(self && [dict isKindOfClass:[NSDictionary class]]) {
-            self.key = [self objectOrNilForKey:kPm25Key fromDictionary:dict];
-            self.type = [self objectOrNilForKey:kPm25Type fromDictionary:dict];
-            self.val = [self objectOrNilForKey:kPm25Val fromDictionary:dict];
+    if (self && [dict isKindOfClass:[NSDictionary class]]) {
+        self.key = [self objectOrNilForKey:kPm25Key fromDictionary:dict];
+        self.type = [self objectOrNilForKey:kPm25Type fromDictionary:dict];
+        self.val = [self objectOrNilForKey:kPm25Val fromDictionary:dict];
 
     }
-    
+
     return self;
-    
+
 }
 
-- (NSDictionary *)dictionaryRepresentation
-{
+- (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:self.key forKey:kPm25Key];
     [mutableDict setValue:self.type forKey:kPm25Type];
@@ -58,14 +55,13 @@ NSString *const kPm25Val = @"val";
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
 
-- (NSString *)description 
-{
+- (NSString *)description {
     return [NSString stringWithFormat:@"%@", [self dictionaryRepresentation]];
 }
 
 #pragma mark - Helper Method
-- (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict
-{
+
+- (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict {
     id object = [dict objectForKey:aKey];
     return [object isEqual:[NSNull null]] ? nil : object;
 }
@@ -73,8 +69,7 @@ NSString *const kPm25Val = @"val";
 
 #pragma mark - NSCoding Methods
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
 
     self.key = [aDecoder decodeObjectForKey:kPm25Key];
@@ -83,25 +78,23 @@ NSString *const kPm25Val = @"val";
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
+- (void)encodeWithCoder:(NSCoder *)aCoder {
 
     [aCoder encodeObject:_key forKey:kPm25Key];
     [aCoder encodeObject:_type forKey:kPm25Type];
     [aCoder encodeObject:_val forKey:kPm25Val];
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
+- (id)copyWithZone:(NSZone *)zone {
     Pm25 *copy = [[Pm25 alloc] init];
-    
+
     if (copy) {
 
         copy.key = [self.key copyWithZone:zone];
         copy.type = [self.type copyWithZone:zone];
         copy.val = [self.val copyWithZone:zone];
     }
-    
+
     return copy;
 }
 

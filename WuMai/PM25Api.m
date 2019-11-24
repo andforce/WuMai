@@ -12,8 +12,6 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "DataModels.h"
-#import "PM25MAPointAnnotation.h"
-#import "PM25MAAnnotationView.h"
 
 @implementation PM25Api {
     AFHTTPSessionManager *_browser;
@@ -53,7 +51,7 @@
 
         handler(monitors);
 
-    } failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
+    }     failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
         handler(nil);
     }];
 }

@@ -39,21 +39,21 @@
 - (UIImage *)image:(int)zoomLevel with:(int)aqiLevel {
     int index = 0;
 
-    if (aqiLevel >= 0 && aqiLevel <= 50){
+    if (aqiLevel >= 0 && aqiLevel <= 50) {
         index = 0;
-    } else if (aqiLevel >= 51 && aqiLevel <= 100){
+    } else if (aqiLevel >= 51 && aqiLevel <= 100) {
         index = 1;
-    }else if (aqiLevel >= 101 && aqiLevel <= 150){
+    } else if (aqiLevel >= 101 && aqiLevel <= 150) {
         index = 2;
-    }else if (aqiLevel >= 151 && aqiLevel <= 200){
+    } else if (aqiLevel >= 151 && aqiLevel <= 200) {
         index = 3;
-    }else if (aqiLevel >= 201 && aqiLevel <= 300){
+    } else if (aqiLevel >= 201 && aqiLevel <= 300) {
         index = 4;
-    }else if (aqiLevel > 300){
+    } else if (aqiLevel > 300) {
         index = 5;
     }
 
-    if (zoomLevel > 7){
+    if (zoomLevel > 7) {
         return _rect[(NSUInteger) index];
     } else {
         return _point[(NSUInteger) index];

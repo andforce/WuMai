@@ -38,35 +38,32 @@ NSString *const kMonitorsPos = @"pos";
 @synthesize pos = _pos;
 
 
-+ (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
-{
++ (instancetype)modelObjectWithDictionary:(NSDictionary *)dict {
     return [[self alloc] initWithDictionary:dict];
 }
 
-- (instancetype)initWithDictionary:(NSDictionary *)dict
-{
+- (instancetype)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
-    
+
     // This check serves to make sure that a non-NSDictionary object
     // passed into the model class doesn't break the parsing.
-    if(self && [dict isKindOfClass:[NSDictionary class]]) {
-            self.site = [self objectOrNilForKey:kMonitorsSite fromDictionary:dict];
-            self.city = [self objectOrNilForKey:kMonitorsCity fromDictionary:dict];
-            self.pm25 = [Pm25 modelObjectWithDictionary:[dict objectForKey:kMonitorsPm25]];
-            self.updateTime = [self objectOrNilForKey:kMonitorsUpdateTime fromDictionary:dict];
-            self.minLevel = [self objectOrNilForKey:kMonitorsMinLevel fromDictionary:dict];
-            self.sfUrl = [self objectOrNilForKey:kMonitorsSfUrl fromDictionary:dict];
-            self.name = [self objectOrNilForKey:kMonitorsName fromDictionary:dict];
-            self.pos = [Pos modelObjectWithDictionary:[dict objectForKey:kMonitorsPos]];
+    if (self && [dict isKindOfClass:[NSDictionary class]]) {
+        self.site = [self objectOrNilForKey:kMonitorsSite fromDictionary:dict];
+        self.city = [self objectOrNilForKey:kMonitorsCity fromDictionary:dict];
+        self.pm25 = [Pm25 modelObjectWithDictionary:[dict objectForKey:kMonitorsPm25]];
+        self.updateTime = [self objectOrNilForKey:kMonitorsUpdateTime fromDictionary:dict];
+        self.minLevel = [self objectOrNilForKey:kMonitorsMinLevel fromDictionary:dict];
+        self.sfUrl = [self objectOrNilForKey:kMonitorsSfUrl fromDictionary:dict];
+        self.name = [self objectOrNilForKey:kMonitorsName fromDictionary:dict];
+        self.pos = [Pos modelObjectWithDictionary:[dict objectForKey:kMonitorsPos]];
 
     }
-    
+
     return self;
-    
+
 }
 
-- (NSDictionary *)dictionaryRepresentation
-{
+- (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:self.site forKey:kMonitorsSite];
     [mutableDict setValue:self.city forKey:kMonitorsCity];
@@ -80,14 +77,13 @@ NSString *const kMonitorsPos = @"pos";
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
 
-- (NSString *)description 
-{
+- (NSString *)description {
     return [NSString stringWithFormat:@"%@", [self dictionaryRepresentation]];
 }
 
 #pragma mark - Helper Method
-- (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict
-{
+
+- (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict {
     id object = [dict objectForKey:aKey];
     return [object isEqual:[NSNull null]] ? nil : object;
 }
@@ -95,8 +91,7 @@ NSString *const kMonitorsPos = @"pos";
 
 #pragma mark - NSCoding Methods
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
 
     self.site = [aDecoder decodeObjectForKey:kMonitorsSite];
@@ -110,8 +105,7 @@ NSString *const kMonitorsPos = @"pos";
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
+- (void)encodeWithCoder:(NSCoder *)aCoder {
 
     [aCoder encodeObject:_site forKey:kMonitorsSite];
     [aCoder encodeObject:_city forKey:kMonitorsCity];
@@ -123,10 +117,9 @@ NSString *const kMonitorsPos = @"pos";
     [aCoder encodeObject:_pos forKey:kMonitorsPos];
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
+- (id)copyWithZone:(NSZone *)zone {
     Monitors *copy = [[Monitors alloc] init];
-    
+
     if (copy) {
 
         copy.site = [self.site copyWithZone:zone];
@@ -138,22 +131,22 @@ NSString *const kMonitorsPos = @"pos";
         copy.name = [self.name copyWithZone:zone];
         copy.pos = [self.pos copyWithZone:zone];
     }
-    
+
     return copy;
 }
 
 - (BOOL)isEqual:(id)object {
-    if (self == object){
+    if (self == object) {
         return YES;
     }
 
-    if (![object isKindOfClass:[Monitors class]]){
+    if (![object isKindOfClass:[Monitors class]]) {
         return NO;
     } else {
-        NSString *monitor = [NSString stringWithFormat:@"%@+%@" ,self.pos.lat, self.pos.lat];
+        NSString *monitor = [NSString stringWithFormat:@"%@+%@", self.pos.lat, self.pos.lat];
 
         Monitors *targetAnn = object;
-        NSString *target = [NSString stringWithFormat:@"%@+%@" ,targetAnn.pos.lat, targetAnn.pos.lat];
+        NSString *target = [NSString stringWithFormat:@"%@+%@", targetAnn.pos.lat, targetAnn.pos.lat];
 
         BOOL isEqual = [monitor isEqualToString:target];
         return isEqual;

@@ -27,30 +27,27 @@ NSString *const kPM25ModuleData = @"data";
 @synthesize data = _data;
 
 
-+ (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
-{
++ (instancetype)modelObjectWithDictionary:(NSDictionary *)dict {
     return [[self alloc] initWithDictionary:dict];
 }
 
-- (instancetype)initWithDictionary:(NSDictionary *)dict
-{
+- (instancetype)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
-    
+
     // This check serves to make sure that a non-NSDictionary object
     // passed into the model class doesn't break the parsing.
-    if(self && [dict isKindOfClass:[NSDictionary class]]) {
-            self.msg = [self objectOrNilForKey:kPM25ModuleMsg fromDictionary:dict];
-            self.status = [[self objectOrNilForKey:kPM25ModuleStatus fromDictionary:dict] doubleValue];
-            self.data = [Data modelObjectWithDictionary:[dict objectForKey:kPM25ModuleData]];
+    if (self && [dict isKindOfClass:[NSDictionary class]]) {
+        self.msg = [self objectOrNilForKey:kPM25ModuleMsg fromDictionary:dict];
+        self.status = [[self objectOrNilForKey:kPM25ModuleStatus fromDictionary:dict] doubleValue];
+        self.data = [Data modelObjectWithDictionary:[dict objectForKey:kPM25ModuleData]];
 
     }
-    
+
     return self;
-    
+
 }
 
-- (NSDictionary *)dictionaryRepresentation
-{
+- (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:self.msg forKey:kPM25ModuleMsg];
     [mutableDict setValue:[NSNumber numberWithDouble:self.status] forKey:kPM25ModuleStatus];
@@ -59,14 +56,13 @@ NSString *const kPM25ModuleData = @"data";
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
 
-- (NSString *)description 
-{
+- (NSString *)description {
     return [NSString stringWithFormat:@"%@", [self dictionaryRepresentation]];
 }
 
 #pragma mark - Helper Method
-- (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict
-{
+
+- (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict {
     id object = [dict objectForKey:aKey];
     return [object isEqual:[NSNull null]] ? nil : object;
 }
@@ -74,8 +70,7 @@ NSString *const kPM25ModuleData = @"data";
 
 #pragma mark - NSCoding Methods
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
 
     self.msg = [aDecoder decodeObjectForKey:kPM25ModuleMsg];
@@ -84,25 +79,23 @@ NSString *const kPM25ModuleData = @"data";
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
+- (void)encodeWithCoder:(NSCoder *)aCoder {
 
     [aCoder encodeObject:_msg forKey:kPM25ModuleMsg];
     [aCoder encodeDouble:_status forKey:kPM25ModuleStatus];
     [aCoder encodeObject:_data forKey:kPM25ModuleData];
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
+- (id)copyWithZone:(NSZone *)zone {
     PM25Module *copy = [[PM25Module alloc] init];
-    
+
     if (copy) {
 
         copy.msg = [self.msg copyWithZone:zone];
         copy.status = self.status;
         copy.data = [self.data copyWithZone:zone];
     }
-    
+
     return copy;
 }
 

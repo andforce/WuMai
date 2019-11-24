@@ -13,8 +13,8 @@
 
 
 // 检测点
-@property (nonatomic, strong) Monitors* monitors;
+@property(nonatomic, strong) Monitors *monitors;
 
-@property (nonatomic) int zoomLevel;
+@property(nonatomic) int zoomLevel;
 
 @end

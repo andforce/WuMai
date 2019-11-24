@@ -11,12 +11,14 @@
 
 @interface PM25Module : NSObject <NSCoding, NSCopying>
 
-@property (nonatomic, strong) NSString *msg;
-@property (nonatomic, assign) double status;
-@property (nonatomic, strong) Data *data;
+@property(nonatomic, strong) NSString *msg;
+@property(nonatomic, assign) double status;
+@property(nonatomic, strong) Data *data;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
+
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
+
 - (NSDictionary *)dictionaryRepresentation;
 
 @end

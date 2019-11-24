@@ -8,14 +8,15 @@
 #import <Foundation/Foundation.h>
 
 
-
 @interface Pos : NSObject <NSCoding, NSCopying>
 
-@property (nonatomic, strong) NSString *lat;
-@property (nonatomic, strong) NSString *lng;
+@property(nonatomic, strong) NSString *lat;
+@property(nonatomic, strong) NSString *lng;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
+
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
+
 - (NSDictionary *)dictionaryRepresentation;
 
 @end

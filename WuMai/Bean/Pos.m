@@ -24,29 +24,26 @@ NSString *const kPosLng = @"lng";
 @synthesize lng = _lng;
 
 
-+ (instancetype)modelObjectWithDictionary:(NSDictionary *)dict
-{
++ (instancetype)modelObjectWithDictionary:(NSDictionary *)dict {
     return [[self alloc] initWithDictionary:dict];
 }
 
-- (instancetype)initWithDictionary:(NSDictionary *)dict
-{
+- (instancetype)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
-    
+
     // This check serves to make sure that a non-NSDictionary object
     // passed into the model class doesn't break the parsing.
-    if(self && [dict isKindOfClass:[NSDictionary class]]) {
-            self.lat = [self objectOrNilForKey:kPosLat fromDictionary:dict];
-            self.lng = [self objectOrNilForKey:kPosLng fromDictionary:dict];
+    if (self && [dict isKindOfClass:[NSDictionary class]]) {
+        self.lat = [self objectOrNilForKey:kPosLat fromDictionary:dict];
+        self.lng = [self objectOrNilForKey:kPosLng fromDictionary:dict];
 
     }
-    
+
     return self;
-    
+
 }
 
-- (NSDictionary *)dictionaryRepresentation
-{
+- (NSDictionary *)dictionaryRepresentation {
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     [mutableDict setValue:self.lat forKey:kPosLat];
     [mutableDict setValue:self.lng forKey:kPosLng];
@@ -54,14 +51,13 @@ NSString *const kPosLng = @"lng";
     return [NSDictionary dictionaryWithDictionary:mutableDict];
 }
 
-- (NSString *)description 
-{
+- (NSString *)description {
     return [NSString stringWithFormat:@"%@", [self dictionaryRepresentation]];
 }
 
 #pragma mark - Helper Method
-- (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict
-{
+
+- (id)objectOrNilForKey:(id)aKey fromDictionary:(NSDictionary *)dict {
     id object = [dict objectForKey:aKey];
     return [object isEqual:[NSNull null]] ? nil : object;
 }
@@ -69,8 +65,7 @@ NSString *const kPosLng = @"lng";
 
 #pragma mark - NSCoding Methods
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
 
     self.lat = [aDecoder decodeObjectForKey:kPosLat];
@@ -78,23 +73,21 @@ NSString *const kPosLng = @"lng";
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder
-{
+- (void)encodeWithCoder:(NSCoder *)aCoder {
 
     [aCoder encodeObject:_lat forKey:kPosLat];
     [aCoder encodeObject:_lng forKey:kPosLng];
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
+- (id)copyWithZone:(NSZone *)zone {
     Pos *copy = [[Pos alloc] init];
-    
+
     if (copy) {
 
         copy.lat = [self.lat copyWithZone:zone];
         copy.lng = [self.lng copyWithZone:zone];
     }
-    
+
     return copy;
 }
 

@@ -9,10 +9,10 @@
 #import "PM25MAAnnotationView.h"
 #import "PM25ImageHelper.h"
 
-@implementation PM25MAAnnotationView{
-    UILabel * _label;
+@implementation PM25MAAnnotationView {
+    UILabel *_label;
     int _aqiLevel;
-    NSString * _aqiLevelStr;
+    NSString *_aqiLevelStr;
     int _zoomLevel;
 }
 
@@ -25,7 +25,7 @@
 */
 
 - (id)initWithAnnotation:(id <MAAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]){
+    if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]) {
 
         _label = [[UILabel alloc] initWithFrame:self.frame];
         _label.text = @"500";
@@ -56,7 +56,7 @@
 
     self.image = [[PM25ImageHelper shareInstance] image:zoomLevel with:_aqiLevel];
 
-    if (zoomLevel > 7){
+    if (zoomLevel > 7) {
         _label.text = aqiLevel;
     } else {
         _label.text = @"";
@@ -65,12 +65,12 @@
 }
 
 - (void)refreshImage:(int)zoomLevel {
-    if (zoomLevel == _zoomLevel){
+    if (zoomLevel == _zoomLevel) {
         return;
     }
     self.image = [[PM25ImageHelper shareInstance] image:zoomLevel with:_aqiLevel];
 
-    if (zoomLevel > 7){
+    if (zoomLevel > 7) {
         _label.text = _aqiLevelStr;
     } else {
         _label.text = @"";

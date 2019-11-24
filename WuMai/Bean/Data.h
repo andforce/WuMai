@@ -8,13 +8,14 @@
 #import <Foundation/Foundation.h>
 
 
-
 @interface Data : NSObject <NSCoding, NSCopying>
 
-@property (nonatomic, strong) NSArray *monitors;
+@property(nonatomic, strong) NSArray *monitors;
 
 + (instancetype)modelObjectWithDictionary:(NSDictionary *)dict;
+
 - (instancetype)initWithDictionary:(NSDictionary *)dict;
+
 - (NSDictionary *)dictionaryRepresentation;
 
 @end
