@@ -17,20 +17,20 @@
 
     if (self = [super init]) {
         _rect = @[
-                [UIImage imageNamed:@"wumai_rect_1_30x27_@2x.png"],
-                [UIImage imageNamed:@"wumai_rect_2_30x27_@2x.png"],
-                [UIImage imageNamed:@"wumai_rect_3_30x27_@2x.png"],
-                [UIImage imageNamed:@"wumai_rect_4_30x27_@2x.png"],
-                [UIImage imageNamed:@"wumai_rect_5_30x27_@2x.png"],
-                [UIImage imageNamed:@"wumai_rect_6_30x27_@2x.png"]];
+                [UIImage imageNamed:@"wumai_rect_1_30x27"],
+                [UIImage imageNamed:@"wumai_rect_2_30x27"],
+                [UIImage imageNamed:@"wumai_rect_3_30x27"],
+                [UIImage imageNamed:@"wumai_rect_4_30x27"],
+                [UIImage imageNamed:@"wumai_rect_5_30x27"],
+                [UIImage imageNamed:@"wumai_rect_6_30x27"]];
 
         _circle = @[
-                [UIImage imageNamed:@"wumai_circle_1_8x8_@2x.png"],
-                [UIImage imageNamed:@"wumai_circle_2_8x8_@2x.png"],
-                [UIImage imageNamed:@"wumai_circle_3_8x8_@2x.png"],
-                [UIImage imageNamed:@"wumai_circle_4_8x8_@2x.png"],
-                [UIImage imageNamed:@"wumai_circle_5_8x8_@2x.png"],
-                [UIImage imageNamed:@"wumai_circle_6_8x8_@2x.png"]];
+                [UIImage imageNamed:@"wumai_circle_1_8x8"],
+                [UIImage imageNamed:@"wumai_circle_2_8x8"],
+                [UIImage imageNamed:@"wumai_circle_3_8x8"],
+                [UIImage imageNamed:@"wumai_circle_4_8x8"],
+                [UIImage imageNamed:@"wumai_circle_5_8x8"],
+                [UIImage imageNamed:@"wumai_circle_6_8x8"]];
 
     }
     return self;
